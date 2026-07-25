@@ -1,0 +1,7 @@
+carrier,zone,base_cents,extra_kg_cents
+Baltic,A,900,120
+Baltic,B,1100,150
+Vistula,A,950,100
+Vistula,B,1250,140
+Amber,A,850,130
+Amber,B,1180,155
