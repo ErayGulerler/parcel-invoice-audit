@@ -1,0 +1,11 @@
+{
+  "raw_events": 1371,
+  "unique_parcels": 1200,
+  "accepted": 1191,
+  "underbilled_cents": 10160,
+  "disputes": 121,
+  "disputable_cents": 36150,
+  "missing_rates": 11,
+  "quarantined_parcels": 9,
+  "quarantine_rows": 14
+}

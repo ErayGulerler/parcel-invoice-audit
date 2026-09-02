@@ -1,0 +1,15 @@
+parcel_id,revision,carrier,zone,weight_g,billed_cents,reason
+PK00211,1,Baltic,B,2400,1400,conflicting_revision
+PK00211,1,Baltic,B,2400,1430,conflicting_revision
+PK00251,3,Baltic,A,0,1020,invalid_charge
+PK00422,1,Baltic,B,5100,1850,conflicting_revision
+PK00422,1,Baltic,B,5100,1880,conflicting_revision
+PK00502,3,Vistula,A,0,950,invalid_charge
+PK00633,1,Baltic,A,3500,1260,conflicting_revision
+PK00633,1,Baltic,A,3500,1290,conflicting_revision
+PK00753,3,Baltic,A,0,1020,invalid_charge
+PK00844,1,Amber,A,500,850,conflicting_revision
+PK00844,1,Amber,A,500,880,conflicting_revision
+PK01004,3,Baltic,A,0,1020,invalid_charge
+PK01055,1,Vistula,B,3500,1670,conflicting_revision
+PK01055,1,Vistula,B,3500,1700,conflicting_revision
