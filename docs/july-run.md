@@ -1,4 +1,4 @@
-# Walk through the July run
+# The July sample run
 
 Sample billing period ending 31 July 2026.
 
@@ -28,16 +28,9 @@ Vistula's zone B tariff is 1,250 grosz plus 140 for each extra started kilogram.
 
 Search for `PK00211` in [quarantine.csv](../examples/july/quarantine.csv). Two different revision 1 records bill 1,400 and 1,430 grosz. Picking the last line in the file would make the answer depend on upload order. Spark keeps both as evidence and leaves the parcel out of priced totals.
 
-## Explain the engineering decisions
+## Design decisions
 
 - **Why two engines?** Spark handles the event history before finance sees it. Snowpark keeps contract pricing in the warehouse path, where a finance team could govern access to tariffs. A single engine would be enough for the small sample. The handoff makes each stage independently inspectable.
 - **Why a full snapshot?** It is easy to replay and handles late corrections. A production pipeline would likely persist the highest revision by parcel and update affected keys. It would also need a policy for corrections arriving after finance closes a period.
 - **What would break at larger volume?** This version runs Spark on two local workers and writes one CSV per output through the driver. The emulator loads accepted rows in memory. For millions of parcels, write partitioned Parquet to shared storage, read it from a Snowflake stage and keep the audit detail inside Snowflake. Export only the review queue.
-- **How do you know it worked?** The tests include a one-gram weight boundary, conflicting revisions and duplicate tariff keys. The full-run verifier checks that every input parcel is either accepted or quarantined, each accepted parcel has one audit row, and the ranked queue adds up to the carrier exposure.
-
-## A five-minute interview demo
-
-1. Open the HTML report and explain why Baltic comes first.
-2. Follow one invoice from its raw revisions through the Spark handoff into the audit.
-3. Show where the Snowpark left join preserves missing contracts.
-4. Run the verifier. Then copy the inputs, add a duplicate tariff key and run against the copy. The duplicate should stop the run before a report is published.
+- **How is the output verified?** The tests include a one-gram weight boundary, conflicting revisions and duplicate tariff keys. The full-run verifier checks that every input parcel is either accepted or quarantined, each accepted parcel has one audit row, and the ranked queue adds up to the carrier exposure.

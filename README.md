@@ -6,7 +6,7 @@ A retailer has 1,371 carrier invoice events for 1,200 parcels. Some rows are upl
 
 This Python project uses **Apache Spark** to settle the invoice history and **Snowpark** to price each accepted parcel against a contract. The supplied data is synthetic. Carrier names and PLN tariffs belong to this example.
 
-**Start with the result.** Open [the finance report](examples/july/review.html) in a browser after extracting the ZIP. The sample flags **PLN 361.50 across 121 invoices**. Baltic accounts for PLN 291.00, about 80.5% of the exposure. A reviewer can open the dispute queue, select a parcel and trace the amount back to its invoice and rate.
+**Start with the result.** Open [the finance report](examples/july/review.html) in a browser. The sample flags **PLN 361.50 across 121 invoices**. Baltic accounts for PLN 291.00, about 80.5% of the exposure. A reviewer can open the dispute queue, select a parcel and trace the amount back to its invoice and rate.
 
 ## Run the example
 
@@ -54,7 +54,7 @@ Snowpark: validate rates, left join, price, compare and group
 | [audit/clean.py](audit/clean.py) | Why an invalid correction blocks the older bill from slipping back into the report |
 | [audit/reconcile.py](audit/reconcile.py) | The rate join, weight steps and positive exposure calculation |
 | [audit/run.py](audit/run.py) | How a complete run gets published and how to switch to a Snowflake warehouse |
-| [docs/walkthrough.md](docs/walkthrough.md) | Two parcel traces, design trade-offs and an interview walkthrough |
+| [docs/july-run.md](docs/july-run.md) | Two parcel traces and design trade-offs for the July sample |
 | [docs/warehouse.md](docs/warehouse.md) | Optional live execution using a named connection |
 | [tests/test_audit.py](tests/test_audit.py) | Small cases for revisions, conflicting rates, exact kilogram boundaries and missing rates |
 
@@ -72,7 +72,3 @@ python -m audit.verify runs/custom --data my-data --custom
 ```
 
 The fields, assumptions and exception rules are in [the data contract](docs/data-contract.md). The verifier checks parcel coverage, queue ordering and agreement between the queue and carrier totals. In sample mode it also checks the fixed counts and amounts in [expected.json](examples/expected.json).
-
-## CV wording
-
-> Built a parcel invoice reconciliation pipeline with PySpark and Snowpark. Resolved 1,371 synthetic billing events into 1,200 parcel histories and identified PLN 361.50 in potential overcharges across 121 invoices.
