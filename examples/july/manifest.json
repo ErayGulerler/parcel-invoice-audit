@@ -1,0 +1,10 @@
+{
+  "raw_events": 1371,
+  "input_sha256": {
+    "invoice_events.jsonl": "40bdcb476d72ab5c9308576c88d5bd8e20647da6916f1251731dbca6eecb40fa",
+    "tariffs.csv": "f3c2da36fdac0e433a49d386f8ccbb6ba9c317bbba6d359e4237ca86556fb5e1"
+  },
+  "pyspark": "4.1.1",
+  "snowpark": "1.48.0",
+  "snowpark_mode": "local emulator"
+}
